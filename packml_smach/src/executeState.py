@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Software License Agreement (Apache License)
-# Copyright (c) 2014, <Advanced Remanufacturing and Technology Centre/Mingli Han>
+# Copyright (c) 2017, <Advanced Remanufacturing and Technology Centre/Mingli Han>
  
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
