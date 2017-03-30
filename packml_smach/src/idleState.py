@@ -19,9 +19,11 @@
 import rospy
 import smach
 import smach_ros
+
 import config
 
 
+        
 # define state Idle
 class Idle(smach.State):
     def __init__(self):
@@ -32,6 +34,7 @@ class Idle(smach.State):
         
     def execute(self, userdata):
         rospy.loginfo('Executing state Idle')
+
         # Receive Start Tag
         var3 = config.client.get_node("ns=3;s=\"PackML_Status\".\"UN\".\"Cmd_Start\"")  
         var3.set_value(True)

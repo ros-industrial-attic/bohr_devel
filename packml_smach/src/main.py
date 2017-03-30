@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 import sys
 import logging
 import time
@@ -24,12 +25,15 @@ import smach
 import smach_ros
 import config
 
+
+
 from resettingState import Resetting
 from stoppedState import Stopped
 from idleState import Idle
 from startingState import Starting
 from executeState import Execute
 from stoppingState import Stopping
+
 
 if __name__ == "__main__":
  
@@ -40,7 +44,7 @@ if __name__ == "__main__":
     # Get ModuleActive tag to enable state machine
     var1 = config.client.get_node("ns=3;s=\"PackML_Status\".\"UN\".\"ModuleActive\"")
     moduleTag = var1.get_value()
- 
+      
     rospy.init_node('smach_example_state_machine')
 
     # Create a SMACH state machine
@@ -50,11 +54,15 @@ if __name__ == "__main__":
     sm.userdata.sm_input = moduleTag 
 
     # Define the default output data of states
+    sm.userdata.sm_counter = 0
+    sm.userdata.sm_input = True
+
     sm.userdata.sm_stopped_out = False
     sm.userdata.sm_reset_out = False
     sm.userdata.sm_idle_out = False
     sm.userdata.sm_starting_out = False
     sm.userdata.sm_execute_out = False   
+    sm.userdata.sm_execute_out = False
 
     # Open the container
     with sm:
@@ -99,6 +107,6 @@ if __name__ == "__main__":
     # Wait for ctrl-c to stop the application
     rospy.spin()
     sis.stop()
-    config.client.disconnect()
 
+    config.client.disconnect()
 

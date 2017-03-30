@@ -19,7 +19,11 @@
 import rospy
 import smach
 import smach_ros
+
 import config
+
+
+
 
         
 
@@ -33,6 +37,7 @@ class Execute(smach.State):
         
     def execute(self, userdata):
         rospy.loginfo('Executing state Execute')
+
         # Receive Stop Tag
         var4 = config.client.get_node("ns=3;s=\"PackML_Status\".\"UN\".\"Cmd_Stop\"")  
         var4.set_value(True)
