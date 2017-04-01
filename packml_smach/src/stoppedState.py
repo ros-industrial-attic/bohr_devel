@@ -36,11 +36,11 @@ class Stopped(smach.State):
         rospy.loginfo('Executing state Stopped')
 
         # Get Reset Tag from PLC
-        var2 = config.client.get_node("ns=3;s=\"PackML_Status\".\"UN\".\"Cmd_Reset\"")
-        var2.set_value(True)
-        config.resetTag = var2.get_value()
-        print("Received reset command: ", config.resetTag)
-        if userdata.stopped_in == True and config.resetTag == True:
+        var = config.client.get_node("ns=3;s=\"PackML_Status\".\"UN\".\"Cmd_Reset\"")
+        var.set_value(True)
+        resetTag = var.get_value()
+        print("Received reset command: ", resetTag)
+        if userdata.stopped_in == True and resetTag == True:
             userdata.stopped_out = True
             return 'outcome1'
         else:
