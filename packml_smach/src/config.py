@@ -3,7 +3,6 @@
 # Software License Agreement (BSD License)
 #
 # Copyright 2017, Advanced Remanufacturing and Technology Centre
-# Copyright 2017, Southwest Research Institute
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
