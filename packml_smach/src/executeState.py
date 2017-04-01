@@ -39,9 +39,9 @@ class Execute(smach.State):
         rospy.loginfo('Executing state Execute')
 
         # Receive Stop Tag
-        var4 = config.client.get_node("ns=3;s=\"PackML_Status\".\"UN\".\"Cmd_Stop\"")  
-        var4.set_value(True)
-        config.stopTag = var4.get_value()
+        var = config.client.get_node("ns=3;s=\"PackML_Status\".\"UN\".\"Cmd_Stop\"")  
+        var.set_value(True)
+        config.stopTag = var.get_value()
         print("Received stop command: ", config.stopTag)
         if userdata.execute_in == True and config.stopTag == True:
            userdata.execute_out = True
