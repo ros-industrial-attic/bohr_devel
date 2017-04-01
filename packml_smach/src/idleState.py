@@ -36,11 +36,11 @@ class Idle(smach.State):
         rospy.loginfo('Executing state Idle')
 
         # Receive Start Tag
-        var3 = config.client.get_node("ns=3;s=\"PackML_Status\".\"UN\".\"Cmd_Start\"")  
-        var3.set_value(True)
-        config.startTag = var3.get_value()
-        print("Received start command: ", config.startTag)
-        if userdata.idle_in == True and config.startTag == True:
+        var = config.client.get_node("ns=3;s=\"PackML_Status\".\"UN\".\"Cmd_Start\"")  
+        var.set_value(True)
+        startTag = var3.get_value()
+        print("Received start command: ", startTag)
+        if userdata.idle_in == True and startTag == True:
            userdata.idle_out = True
            return 'outcome1'
         else:
