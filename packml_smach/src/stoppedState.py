@@ -20,6 +20,10 @@ import rospy
 import smach
 import smach_ros
 
+import config
+
+
+
 # define steady state / stopped
 class Stopped(smach.State):
     def __init__(self):
@@ -30,9 +34,14 @@ class Stopped(smach.State):
 
     def execute(self, userdata):
         rospy.loginfo('Executing state Stopped')
-        if userdata.stopped_in == True:
+
+        # Get Reset Tag from PLC
+        var = config.client.get_node("ns=3;s=\"PackML_Status\".\"UN\".\"Cmd_Reset\"")
+        var.set_value(True)
+        resetTag = var.get_value()
+        print("Received reset command: ", resetTag)
+        if userdata.stopped_in == True and resetTag == True:
             userdata.stopped_out = True
-            
             return 'outcome1'
         else:
             return 'outcome2'

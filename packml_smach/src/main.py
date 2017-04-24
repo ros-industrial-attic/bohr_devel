@@ -16,9 +16,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+import sys
+import logging
+import time
 import rospy
 import smach
 import smach_ros
+import config
+
+
 
 from resettingState import Resetting
 from stoppedState import Stopped
@@ -27,19 +34,34 @@ from startingState import Starting
 from executeState import Execute
 from stoppingState import Stopping
 
-        
+
+if __name__ == "__main__":
+ 
+    # Connect PLC using PLC IP. 'client' is defined in config.py
+    #client = Client("opc.tcp://172.16.32.107:4840/freeopcua/server/")
+    config.client.connect()
+
+    # Get ModuleActive tag to enable state machine
+    var1 = config.client.get_node("ns=3;s=\"PackML_Status\".\"UN\".\"ModuleActive\"")
+    moduleTag = var1.get_value()
       
-def main():
     rospy.init_node('smach_example_state_machine')
 
     # Create a SMACH state machine
     sm = smach.StateMachine(outcomes=['outcome4'])
+    
+    # Define the input data of state machine, and let it equal to the value of ModuleActive tag 
+    sm.userdata.sm_input = moduleTag 
+
+    # Define the default output data of states
     sm.userdata.sm_counter = 0
     sm.userdata.sm_input = True
+
     sm.userdata.sm_stopped_out = False
     sm.userdata.sm_reset_out = False
     sm.userdata.sm_idle_out = False
     sm.userdata.sm_starting_out = False
+    sm.userdata.sm_execute_out = False   
     sm.userdata.sm_execute_out = False
 
     # Open the container
@@ -86,6 +108,5 @@ def main():
     rospy.spin()
     sis.stop()
 
+    config.client.disconnect()
 
-if __name__ == '__main__':
-    main()
