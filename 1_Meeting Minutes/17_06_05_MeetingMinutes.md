@@ -18,7 +18,7 @@
  - Provide screenshot or video of a test case
  - ARTC to run with PLC connected (note we only have this for another 5 days as it is on loan)
 
--C++ Python Library – Shaun Edwards
+-C++ Library – Shaun Edwards
   - Progress with connection to OPC-UA 
   - New OPC UA code written in C++ has been uploaded ? not too sure if it will work ? https://github.com/FreeOpcUa/freeopcua
   - Test with OPC-UA PLC 
