@@ -1,4 +1,4 @@
-# ROS-Industrial PackML Meeting Notes<b>Date:</b> 13th March 2017
+# ROS-Industrial PackML Meeting Notes<b>Date:</b> 5th June 2017
 <b> Attendees: </b>
 - 3M: Tom Strey
 - ROS-I AP: Min Ling Chan
